@@ -23,13 +23,6 @@ subprojects {
         }
     }
 
-    spotless {
-        java {
-            googleJavaFormat()
-        }
-    }
-    compileJava.dependsOn 'spotlessApply'
-
     /* default dependencies for all projects*/
     dependencies {
         implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.14.1'
@@ -63,7 +56,6 @@ subprojects {
         manifest {
             attributes(
                     'Specification-Version': project.version.toString(),
-                    'Implementation-Version': getGitHash(),
                     'Created-By': "Gradle ${gradle.gradleVersion}",
                     'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
                     'Build-OS': "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
